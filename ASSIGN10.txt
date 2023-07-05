@@ -1,0 +1,846 @@
+
+                   J E S 2  J O B  L O G  --  S Y S T E M  2 9 6 4  --  N O D E  S V S C J E S 2        
+
+ 
+00.51.33 JOB02193 ---- SUNDAY,    08 MAY 2022 ----
+00.51.33 JOB02193  IRR010I  USERID KC03D69  IS ASSIGNED TO THIS JOB.
+00.51.33 JOB02193  ICH70001I KC03D69  LAST ACCESS AT 00:50:51 ON SUNDAY, MAY 8, 2022
+00.51.33 JOB02193  $HASP373 KC03D69A STARTED - INIT 1    - CLASS A        - SYS 2964
+00.51.34 JOB02193  -                                      -----TIMINGS (MINS.)------                          -----PAGING COUNTS----
+00.51.34 JOB02193  -STEPNAME PROCSTEP    RC   EXCP   CONN       TCB       SRB  CLOCK          SERV  WORKLOAD  PAGE  SWAP   VIO SWAPS
+00.51.34 JOB02193  -JSTEP01              00     54      4       .00       .00     .0            10  BATCH        0     0     0     0
+00.51.34 JOB02193  -KC03D69A ENDED.  NAME-R.SIMON              TOTAL TCB CPU TIME=      .00 TOTAL ELAPSED TIME=    .0
+00.51.34 JOB02193  $HASP395 KC03D69A ENDED - RC=0000
+
+------ JES2 JOB STATISTICS ------
+
+
+  08 MAY 2022 JOB EXECUTION DATE
+
+
+          433 CARDS READ
+
+
+          771 SYSOUT PRINT RECORDS
+
+
+            0 SYSOUT PUNCH RECORDS
+
+
+           74 SYSOUT SPOOL KBYTES
+
+
+         0.00 MINUTES EXECUTION TIME
+!! END OF JES SPOOL FILE !!
+       1 //KC03D69A JOB ,'R.SIMON',MSGCLASS=H                                    JOB02193
+       2 //JSTEP01  EXEC PGM=ASSIST                                                      
+       3 //STEPLIB  DD DSN=KC00NIU.ASSIST.LOADLIB,DISP=SHR                               
+       4 //SYSPRINT DD SYSOUT=*                                                          
+       5 //SYSIN    DD *                                                                 
+         //*                                                                             
+         //* THE FOLLOWING IS THE INPUT DATA SET                                         
+         //*                                                                             
+       6 //FT05F001 DD DSN=KC02322.CSCI360.DATASP22(DATA10),DISP=SHR                     
+         //*                                                                             
+         //* THE FOLLOWING IS THE OUTPUT DATA SET                                        
+         //*                                                                             
+       7 //FT06F001 DD SYSOUT=*                                                          
+         //*                                                                             
+       8 //                                                                              
+!! END OF JES SPOOL FILE !!
+ICH70001I KC03D69  LAST ACCESS AT 00:50:51 ON SUNDAY, MAY 8, 2022
+IEFA111I KC03D69A IS USING THE FOLLOWING JOB RELATED SETTINGS:
+         SWA=ABOVE,TIOT SIZE=32K,DSENQSHR=DISALLOW,GDGBIAS=JOB
+IEF236I ALLOC. FOR KC03D69A JSTEP01
+IGD103I SMS ALLOCATED TO DDNAME STEPLIB
+IEF237I JES2 ALLOCATED TO SYSPRINT
+IEF237I JES2 ALLOCATED TO SYSIN
+IGD103I SMS ALLOCATED TO DDNAME FT05F001
+IEF237I JES2 ALLOCATED TO FT06F001
+IEF142I KC03D69A JSTEP01 - STEP WAS EXECUTED - COND CODE 0000
+IGD104I KC00NIU.ASSIST.LOADLIB                       RETAINED,  DDNAME=STEPLIB 
+IEF285I   KC03D69.KC03D69A.JOB02193.D0000102.?         SYSOUT        
+IEF285I   KC03D69.KC03D69A.JOB02193.D0000101.?         SYSIN         
+IGD104I KC02322.CSCI360.DATASP22                     RETAINED,  DDNAME=FT05F001
+IEF285I   KC03D69.KC03D69A.JOB02193.D0000103.?         SYSOUT        
+IEF373I STEP/JSTEP01 /START 2022128.0051
+IEF032I STEP/JSTEP01 /STOP  2022128.0051 
+        CPU:     0 HR  00 MIN  00.00 SEC    SRB:     0 HR  00 MIN  00.00 SEC    
+        VIRT:   584K  SYS:   252K  EXT:        0K  SYS:    11336K
+        ATB- REAL:                  1056K  SLOTS:                     0K
+             VIRT- ALLOC:      13M SHRD:       0M
+IEF375I  JOB/KC03D69A/START 2022128.0051
+IEF033I  JOB/KC03D69A/STOP  2022128.0051 
+        CPU:     0 HR  00 MIN  00.00 SEC    SRB:     0 HR  00 MIN  00.00 SEC    
+!! END OF JES SPOOL FILE !!
+
+*** ASSIST 4.0/A2-05/15/82  470/V7A/0:OS/VS2  INS=SDFP7/X=BGHO, CHECK/TRC/=1180, OPTS=CDKMPR FROM PENN ST*NIU COMPSCI*LT            
+
+                                                                                                                                    
+
+                                                                                                               PAGE    1            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+                                      2 *****************************************************************                           
+                                      3 *                                                               *                           
+                                      4 *  CSCI 360-PE1       ASSIGNMENT 10           SPRING 2022       *                           
+                                      5 *                SUBPROGRAMS AND LINKAGE                        *                           
+                                      6 *                                                               *                           
+                                      7 *  DEVELOPER NAME: RICK SIMON                                   *                           
+                                      8 *        DUE DATE: 05/07/2022                                   *                           
+                                      9 *                                                               *                           
+                                     10 *  THIS PROGRAM PRINTS A MORE DETAILED PAYROLL REPORT USING     *                           
+                                     11 *  SUBPROGRAMS AND PACKED DECIMAL OPERATIONS                    *                           
+                                     12 *                                                               *                           
+                                     13 *****************************************************************                           
+                                     14 *                                                                                           
+000000                               15 PAYROLL3 CSECT                                                                              
+                                     16 *                                                                                           
+                                     17 *  STANDARD ENTRY LINKAGE WITH BASE REGISTER R12                                            
+                                     18 *                                                                                           
+000000 90EC D00C            0000C    19          STM   14,12,12(13)  SAVE REGS IN CALLER'S SAVE AREA                                
+000004 18CF                          20          LR    12,15         COPY CSECT ADDR INTO R12                                       
+000000                               21          USING PAYROLL3,12   ESTABLISH R12 AS THE BASE REG                                  
+000006 41E0 C050            00050    22          LA    14,REGSAVE    R14 POINTS TO THIS CSECT'S SAVE AREA                           
+00000A 50E0 D008            00008    23          ST    14,8(,13)     STORE ADDR OF THIS CSECT'S SAVE AREA                           
+00000E 50D0 E004            00004    24          ST    13,4(,14)     STORE ADDR OF CALLER'S SAVE AREA                               
+000012 18DE                          25          LR    13,14         POINT R13 AT THIS CSECT'S SAVE AREA                            
+                                     26 *                                                                                           
+000014 4140 0063            00063    27          LA    4,99           LOAD 99 INTO REG 4 LINE COUNTER                               
+000018 1B55                          28          SR    5,5            0 OUT REG 5 PAGE COUNTER                                      
+00001A 1B66                          29          SR    6,6            0 OUT REG 6 EMPLOYEE COUNTER                                  
+                                     30 *                                                                                           
+00001C 41B0 CFFF            00FFF    31          LA    11,4095(,12)      ESTABLISH                                                  
+000020 41B0 B001            00001    32          LA    11,1(,11)               SECOND                                               
+001000                               33          USING PAYROLL3+4096,11             BASE REGISTER                                   
+                                     34 *                                                                                           
+000024 4110 B4C0            014C0    35          LA    1,BTPARMS         REG1 -> PARAM LIST FOR BUILDTBL                            
+000028 58F0 C048            00048    36          L     15,=V(BUILDTBL)   REG15 -> SUBPROGRAM BUILDTBL                               
+00002C 05EF                          37          BALR  14,15             BRANCH AND LINK TO BUILDTBL                                
+                                     38 *                                                                                           
+00002E 4110 B4D0            014D0    39          LA    1,PTPARMS         REG1 -> PARAM LIST FOR PROCTBL                             
+000032 58F0 C04C            0004C    40          L     15,=V(PROCTBL)    REG15 -> SUBPROGRAM PROCTBL                                
+000036 05EF                          41          BALR  14,15             BRANCH AND LINK TO PROCTBL                                 
+                                     42 *                                                                                           
+                                     43 *                                                                                           
+                                     44 *  STANDARD EXIT LINKAGE WITH RC OF 0 IN R15                                                
+                                     45 *                                                                                           
+000038 1BFF                          46          SR    15,15         R15 = RETURN CODE OF 0                                         
+00003A 58D0 D004            00004    47          L     13,4(,13)     POINT R13 TO CALLER'S SAVE AREA                                
+00003E 58E0 D00C            0000C    48          L     14,12(,13)    RESTORE REGISTER 14                                            
+000042 980C D014            00014    49          LM    0,12,20(13)   RESTORE R0 THRU R12                                            
+                                     50 *                                                                                           
+000046 07FE                          51          BR    14            RETURN TO CALLER                                               
+                                     52 *                                                                                           
+                                     53          LTORG                                                                              
+
+                                                                                                               PAGE    2            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+000048 000014E0                      54                =V(BUILDTBL)                                                                 
+00004C 00001670                      55                =V(PROCTBL)                                                                  
+                                     56 *                                                                                           
+000050                               57 REGSAVE  DS    18F           PROGRAM'S REGISTER SAVE AREA                                   
+                                     58 *                                                                                           
+000098 5C5C5C5C5C5C5C5C              59 EMPTBL   DC    120CL42'****************************'                                        
+                                     60 *                                                                                           
+001448 0000000C                      61 PFWHPCT  DC    PL4'0'  PACKED FEDERAL WITHHOLDING PERCENTAGE                                
+00144C 0000000000000C                62 PFWMANIP DC    PL7'0'  LARGER FIELD FOR CALCULATION                                         
+001453 0000000C                      63 PSWHPCT  DC    PL4'0'  PACKED STATE WITHHOLDING PERCENTAGE                                  
+001457 0000000000000C                64 PSWMANIP DC    PL7'0'  LARGER FIELD FOR CALCULATION                                         
+                                     65 *                                                                                           
+00145E 00000C                        66 PEMPCTR  DC    PL3'0'  PACKED EMPLOYEE COUNTER (MAX 999)                                    
+001461 000C                          67 PPAGECTR DC    PL2'0'  PACKED PAGE COUNTER (MAX 999)                                        
+                                     68 *                                                                                           
+001463 000000000C                    69 PEMPID   DC    PL5'0'  PACKED EMPLOYEE ID                                                   
+001468 00000C                        70 PHRPAY   DC    PL3'0'  PACKED EMPLOYEE HOURLY PAY RATE                                      
+00146B 00000C                        71 PHOURS   DC    PL3'0'  PACKED EMPLOYEE HOURS WORKED                                         
+00146E 00000C                        72 PDEDUCT  DC    PL3'0'  PACKED EMPLOYEE DEDUCTION                                            
+001471 00000000000C                  73 PDMANIP  DC    PL6'0'  LARGER FIELD FOR CALCULATION                                         
+001477 00000C                        74 PBONUS   DC    PL3'0'  PACKED EMPLOYEE BONUS                                                
+00147A 00000000000C                  75 PBMANIP  DC    PL6'0'  LARGER FIELD FOR CALCULATION                                         
+001480 00000000000C                  76 PEMPGPAY DC    PL6'0'  PACKED CALCULATED EMPLOYEE GROSS PAY                                 
+001486 00000000000C                  77 PFEDWITH DC    PL6'0'  PACKED CALCULATED FEDERAL WITHHOLDING                                
+00148C 00000000000C                  78 PSTWITH  DC    PL6'0'  PACKED CALCULATED STATE WITHHOLDING                                  
+001492 00000000000C                  79 PEMPNPAY DC    PL6'0'  PACKED CALCULATED EMPLOYEE NET PAY                                   
+                                     80 *                                                                                           
+001498 0000000000000000              81 PCALC    DC    PL10'0' USED TO CALCULATE WITHHOLDING AND AVGS                               
+                                     82 *                                                                                           
+0014A2 0000000000000C                83 PTGRPAY  DC    PL7'0'  PACKED TOTAL GROSS EMPLOYEE PAY                                      
+0014A9 0000000000000C                84 PTFWITH  DC    PL7'0'  PACKED TOTAL FEDERAL WITHHOLDING                                     
+0014B0 0000000000000C                85 PTSWITH  DC    PL7'0'  PACKED TOTAL STATE WITHHOLDING                                       
+0014B7 0000000000000C                86 PTNETPAY DC    PL7'0'  PACKED TOTAL NET EMPLOYEE PAY                                        
+                                     87 *                                                                                           
+                                     88 *  PARMLIST TO BE PASSED TO BUILDTBL SUBPROGRAM                                             
+                                     89 *                                                                                           
+0014C0 0000144800001453              90 BTPARMS  DC    A(PFWHPCT,PSWHPCT,EMPTBL,PEMPCTR)                                            
+                                     91 *                                                                                           
+                                     92 *  PARMLIST TO BE PASSED TO PROCTBL SUBPROGRAM                                              
+                                     93 *                                                                                           
+0014D0 0000144800001453              94 PTPARMS  DC    A(PFWHPCT,PSWHPCT,EMPTBL,PEMPCTR)                                            
+                                     95 *                                                                                           
+                                     96 ****************************************************************                            
+                                     97 *                                                              *                            
+                                     98 *  BUILDTBL SUBPROGRAM                                         *                            
+                                     99 *                                                              *                            
+                                    100 ****************************************************************                            
+                                    101 *                                                                                           
+000000                              102 $TBLENT1 DSECT                                                                              
+000000                              103 $TBLID1  DS    PL5            TABLE FOR EMPLOYEE ID                                         
+000005                              104 $TBLPAY1 DS    PL3            TABLE FOR PAY RATE                                            
+000008                              105 $TBLHR1  DS    PL3            TABLE FOR HOURS WORKED                                        
+00000B                              106 $TBLDCT1 DS    PL3            TABLE FOR DEDUCTION                                           
+00000E                              107 $TBLBNS1 DS    PL3            TABLE FOR BONUS                                               
+000011                              108 $TBLNME1 DS    CL25           TABLE FOR EMPLOYEE NAME                                       
+                                    109 *                                                                                           
+000000                              110 $RECORD  DSECT                DSECT FOR EACH INPUT RECORD                                   
+
+                                                                                                               PAGE    3            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+000000                              111 $EMPID   DS    ZL8            INPUT FOR EMPLOYEE ID                                         
+000008                              112 $HRPAY   DS    ZL5            INPUT FOR HOURLY PAY                                          
+00000D                              113 $HOURS   DS    ZL5            INPUT FOR HOURS WORKED                                        
+000012                              114 $DEDUCT  DS    ZL5            INPUT FOR DEDUCTION                                           
+000017                              115 $BONUS   DS    ZL5            INPUT FOR BONUS                                               
+00001C                              116 $EMPNME  DS    CL25           INPUT FOR EMPLOYEE NAME                                       
+                                    117 *                                                                                           
+0014E0                              118 BUILDTBL CSECT                                                                              
+                                    119 *                                                                                           
+                                    120 *  STANDARD ENTRY LINKAGE                                                                   
+                                    121 *                                                                                           
+0014E0 90EC D00C            0000C   122          STM   14,12,12(13)   SAVE REGS IN CALLER'S SAVE AREA                               
+0014E4 18CF                         123          LR    12,15          COPY CSECT ADDRESS INTO REG 12                                
+0014E0                              124          USING BUILDTBL,12    ESTABLISH REG 12 AS BADE REG                                  
+0014E6 41E0 C0A4            01584   125          LA    14,BTSAVE      REG 14 POINTS TO THIS CSECT'S SAVE                            
+0014EA 50E0 D008            00008   126          ST    14,8(,13)      STORE ADDR OF THIS CSECT'S SAVE                               
+0014EE 50D0 E004            00004   127          ST    13,4(,14)      STORE ADDR OR CALLER'S SAVE                                   
+0014F2 18DE                         128          LR    13,14          POINT REG 13 AT THIS CSECT'S SAVE                             
+                                    129 *                                                                                           
+0014F4 9825 1000            00000   130          LM    2,5,0(1)       REG 2 -> FED WITHHOLDING PD                                   
+                                    131 *                             REG 3 -> ST WITHHOLDING PD                                    
+                                    132 *                             REG 4 -> EMPLOYEE TABLE                                       
+                                    133 *                             REG 5 -> EMPLOYEE COUNTER PD                                  
+                                    134 *                                                                                           
+0014F8 E000 C0EC 0050 015CC         135          XREAD WHREC,80       READ FIRST LINE OF RECORD (WH PCT)                            
+                                    136 *                                                                                           
+0014FE F235 B448 C0EC 01448 015CC   137          PACK  PFWHPCT(4),IFWHPCT(6)   PACK FEDERAL WITHHOLDING                             
+001504 F863 B44C B448 0144C 01448   138          ZAP   PFWMANIP(7),PFWHPCT(4)  COPY FED WH INTO BIG FLD                             
+00150A F060 B44C 0001 0144C 00001   139          SRP   PFWMANIP(7),1,0         SHIFT 1 DIGIT LEFT                                   
+001510 FD62 B44C C0A0 0144C 01580   140          DP    PFWMANIP(7),=PL3'100'   DIVIDE BY 100                                        
+001516 F235 B453 C0F2 01453 015D2   141          PACK  PSWHPCT(4),ISWHPCT(6)   PACK STATE WITHHOLDING                               
+00151C F863 B457 B453 01457 01453   142          ZAP   PSWMANIP(7),PSWHPCT(4)  COPY ST WH INTO BIG FLD                              
+001522 F060 B457 0001 01457 00001   143          SRP   PSWMANIP(7),1,0         SHIFT 1 DIGIT LEFT                                   
+001528 FD62 B457 C0A0 01457 01580   144          DP    PSWMANIP(7),=PL3'100'   DIVIDE BY 100                                        
+                                    145 *                                                                                           
+000000                              146          USING $TBLENT1,2     EST ADDRESSABILITY FOR TBL ENTRY                              
+                                    147 *                                                                                           
+00152E 4140 C13C            0161C   148          LA    4,RECORD       REG 4 -> BEGINNING OF INPUT RECORD                            
+000000                              149          USING $RECORD,4      EST ADDRESSABILITY FOR RECORD                                 
+                                    150 *                                                                                           
+001532 E000 C13C 0050 0161C         151          XREAD RECORD,80      GET FIRST EMPLOYEE RECORD                                     
+                                    152 *                                                                                           
+001538 4770 C08E            0156E   153 LOOP1    BNZ   ENDLOOP1                BRANCH TO ENDLOOP1 IF EOF                            
+                                    154 *                                                                                           
+                                    155 *         AP    0(5,5),=PL1'1'          ADD 1 TO EMP COUNTER                                
+                                    156 *                                                                                           
+00153C F247 2000 4000 00000 00000   157          PACK  $TBLID1(5),$EMPID(8)       PACK EMPID INFO FROM REC                          
+001542 F224 2005 4008 00005 00008   158          PACK  $TBLPAY1(3),$HRPAY(5)      PACK HRPAY INFO FROM REC                          
+001548 F224 2008 400D 00008 0000D   159          PACK  $TBLHR1(3),$HOURS(5)       CONVERT HOURS TO PD                               
+00154E F224 200B 4012 0000B 00012   160          PACK  $TBLDCT1(3),$DEDUCT(5)     PACK DEDUCT INFO FROM REC                         
+001554 F224 200E 4017 0000E 00017   161          PACK  $TBLBNS1(3),$BONUS(5)      PACK BONUS INFO FROM REC                          
+00155A D218 2011 401C 00011 0001C   162          MVC   $TBLNME1(25),$EMPNME       MOVE EMPNME TO PRNT LINE                          
+                                    163 *                                                                                           
+001560 4120 201C            0001C   164          LA    2,28(,2)                REG2 -> NEXT ENTRY IN TBL                            
+                                    165 *                                                                                           
+001564 E000 C13C 0050 0161C         166          XREAD RECORD,80               READ NEXT RECORD                                     
+                                    167 *                                                                                           
+
+                                                                                                               PAGE    4            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+00156A 47F0 C058            01538   168          B     LOOP1                   BRANCH TO TOP OF LOOP                                
+                                    169 *                                                                                           
+00156E                              170          DROP  2,4                                                                          
+                                    171 *                                                                                           
+00156E 1BFF                         172 ENDLOOP1 SR    15,15         REG 15 = RETURN CODE OF 0                                      
+001570 58D0 D004            00004   173          L     13,4(,13)     POINT REG 13 TO CALLER'S SAVE AREA                             
+001574 58E0 D00C            0000C   174          L     14,12(,13)    RESTORE REGISTER 14                                            
+001578 980C D014            00014   175          LM    0,12,20(13)   RESTORE REG 0 THRU REG 12                                      
+00157C 07FE                         176          BR    14            RETURN TO CALLER                                               
+                                    177 *                                                                                           
+                                    178          LTORG               LITERAL ORGANIZATION                                           
+001580 00100C                       179                =PL3'100'                                                                    
+                                    180 *                                                                                           
+001584                              181 BTSAVE   DS    18F           REGISTER SAVE AREA                                             
+                                    182 *                                                                                           
+                                    183 *  THE FOLLOWING IS THE BUFFER FOR THE INPUT RECORD                                         
+                                    184 *                                                                                           
+0015CC                              185 WHREC    DS    0H      READS FIRST LINE OF RECORD                                           
+0015CC                              186 IFWHPCT  DS    ZL6     STORES 6 BYTES FROM RECORD                                           
+0015D2                              187 ISWHPCT  DS    ZL6     STORES 6 BYTES FROM RECORD                                           
+0015D8                              188          DS    CL68    FILLER SPACES FROM RECORD                                            
+                                    189 *                                                                                           
+00161C                              190 RECORD   DS    CL80                                                                         
+                                    191 *                                                                                           
+                                    192 *        END   BUILDTBL      FAKE END TO PROGRAM                                            
+                                    193 *                                                                                           
+                                    194 ****************************************************************                            
+                                    195 *                                                              *                            
+                                    196 *  PROCTBL SUBPROGRAM                                          *                            
+                                    197 *                                                              *                            
+                                    198 ****************************************************************                            
+                                    199 *                                                                                           
+000000                              200 $TBLENT2 DSECT                2ND DSECT FOR EMPLOYEE TBL ENTRY                              
+000000                              201 $TBLID2  DS    PL5            TABLE FOR EMPLOYEE ID                                         
+000005                              202 $TBLPAY2 DS    PL3            TABLE FOR PAY RATE                                            
+000008                              203 $TBLHR2  DS    PL3            TABLE FOR HOURS WORKED                                        
+00000B                              204 $TBLDCT2 DS    PL3            TABLE FOR DEDUCTION                                           
+00000E                              205 $TBLBNS2 DS    PL3            TABLE FOR BONUS                                               
+000011                              206 $TBLNME2 DS    CL25           TABLE FOR EMPLOYEE NAME                                       
+                                    207 *                                                                                           
+001670                              208 PROCTBL  CSECT                                                                              
+001670 90EC D00C            0000C   209          STM   14,12,12(13)   SAVE REGS IN CALLER'S SAVE AREA                               
+001674 18CF                         210          LR    12,15          COPY CSECT ADDRESS INTO REG 12                                
+001670                              211          USING PROCTBL,12     EST REG 12 AS BASE REGISTER                                   
+001676 41E0 C190            01800   212          LA    14,PTSAVE      REG 14 POINTS TO THIS CSECT'S SAVE                            
+00167A 50E0 D008            00008   213          ST    14,8(,13)      STORE ADDRESS OF THIS CSECT'S SAVE                            
+00167E 50D0 E004            00004   214          ST    13,4(,14)      STORE ADDRESS OF CALLER'S SAVE                                
+001682 18DE                         215          LR    13,14          POINT REG 13 AT THIS CSECT'S SAVE                             
+                                    216 *                                                                                           
+001684 9825 1000            00000   217          LM    2,5,0(1)       REG 2 -> FED WITHHOLDING PD                                   
+                                    218 *                             REG 3 -> ST WITHHOLDING PD                                    
+                                    219 *                             REG 4 -> EMPLOYEE TABLE                                       
+                                    220 *                             REG 5 -> EMPLOYEE COUNTER PD                                  
+                                    221 *                                                                                           
+000000                              222          USING $TBLENT2,2     EST ADDRESSABILITY FOR TBL ENTRY                              
+                                    223 *                                                                                           
+001688 F872 C1D8 3000 01848 00000   224          ZAP   DBLWORD(8),0(3,3)  PUT PEMPCTR IN DOUBLE WORD                                
+
+                                                                                                               PAGE    5            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+00168E 4F40 C1D8            01848   225          CVB   4,DBLWORD      CONVERT PEMPCTR TO BINARY IN REG 4                            
+                                    226 *                                                                                           
+001692 D218 C204 2011 01874 00011   227 LOOP2    MVC   OEMPNME(25),$TBLNME2 COPY EMPNAME TO DETAIL LINE                             
+                                    228 *                                                                                           
+001698 9240 C1F9      01869         229          MVI   DETAIL+1,C' '           SET ALL BUT 1ST BYTE TO--                            
+00169C D282 C1FA C1F9 0186A 01869   230          MVC   DETAIL+2(131),DETAIL+1  --SPACES TO PREP FOR NEXT                            
+                                    231 *                                                                                           
+0016A2 4110 C1FC            0186C   232          LA    1,OEMPID+3     PRESET REG 1 FOR ED                                           
+0016A6 D209 C1F9 C524 01869 01B94   233          MVC   OEMPID(10),=X'21202060202020202020'                                          
+0016AC DE09 C1F9 2000 01869 00000   234          ED    OEMPID(10),$TBLID2   EDIT EMPID INTO PRNT LINE                               
+                                    235 *                                                                                           
+0016B2 4110 C223            01893   236          LA    1,OHRPAY+3     PRESET REG 1 FOR EDMK                                         
+0016B6 D206 C220 C52E 01890 01B9E   237          MVC   OHRPAY(7),=X'402021204B2020'                                                 
+0016BC DF06 C220 2005 01890 00005   238          EDMK  OHRPAY(7),$TBLPAY2   EDIT HRPAY INTO PRNT LINE                               
+0016C2 0610                         239          BCTR  1,0                  DECREMENT REG 1 BY 1                                    
+0016C4 925B 1000      00000         240          MVI   0(1),C'$'            PLACE THE DOLLAR SIGN                                   
+                                    241 *                                                                                           
+0016C8 4110 C22D            0189D   242          LA    1,OHOURS+3     PRESET REG 1 FOR ED                                           
+0016CC D206 C22A C52E 0189A 01B9E   243          MVC   OHOURS(7),=X'402021204B2020'                                                 
+0016D2 DE06 C22A 2008 0189A 00008   244          ED    OHOURS(7),$TBLHR2    ADD DEC POINT USING MVC                                 
+                                    245 *                                                                                           
+0016D8 F852 B471 200B 01471 0000B   246          ZAP   PDMANIP(6),$TBLDCT2(3)  COPY DEDUCT TO BIG FIELD                             
+0016DE F050 B471 0003 01471 00003   247          SRP   PDMANIP(6),3,0          SHIFT 3 DIGITS LEFT                                  
+0016E4 F055 B471 003F 01471 0003F   248          SRP   PDMANIP(6),64-1,5       SHIFT 1 DIGIT RIGHT, RND                             
+                                    249 *                                                                                           
+0016EA F852 B47A 200E 0147A 0000E   250          ZAP   PBMANIP(6),$TBLBNS2(3)  COPY BONUS TO BIG NIGHT                              
+0016F0 F050 B47A 0003 0147A 00003   251          SRP   PBMANIP(6),3,0          SHIFT 3 DIGITS LEFT                                  
+0016F6 F055 B47A 003F 0147A 0003F   252          SRP   PBMANIP(6),64-1,5       SHIFT 1 DIGIT RIGHT, RND                             
+                                    253 *                                                                                           
+0016FC F852 B480 2005 01480 00005   254          ZAP   PEMPGPAY(6),$TBLPAY2(3) PAY RATE TO LARGER FLD                               
+001702 FC52 B480 2008 01480 00008   255          MP    PEMPGPAY(6),$TBLHR2(3)  MULTIPLY PAY BY HOURS                                
+001708 FB55 B480 B471 01480 01471   256          SP    PEMPGPAY(6),PDMANIP(6)  MINUS DEDUCT FROM GROSS                              
+00170E FA55 B480 B47A 01480 0147A   257          AP    PEMPGPAY(6),PBMANIP(6)  ADD BONUS TO GROSS                                   
+001714 F055 B480 003E 01480 0003E   258          SRP   PEMPGPAY(6),64-2,5      SHIFT 2 DIGITS RIGHT                                 
+00171A D20E C234 C535 018A4 01BA5   259          MVC   OEMPGPAY(15),=X'402020206B2020206B2021204B2020'                              
+001720 4110 C237            018A7   260          LA    1,OEMPGPAY+3            PRESET REG 1 FOR EDMK                                
+001724 DF0E C234 B480 018A4 01480   261          EDMK  OEMPGPAY(15),PEMPGPAY   EDIT GRPAY TO PRNT LINE                              
+00172A 0610                         262          BCTR  1,0                     DECREMENT REG 1 BY 1                                 
+00172C 925B 1000      00000         263          MVI   0(1),C'$'               PLACE THE DOLLAR SIGN                                
+                                    264 *                                                                                           
+                                    265 *                                                                                           
+001730 F895 B498 B480 01498 01480   266          ZAP   PCALC(10),PEMPGPAY(6)   COPY GRPAY TO BIG FIELD                              
+001736 FC93 B498 B44C 01498 0144C   267          MP    PCALC(10),PFWMANIP(4)   MULT FED WH BY GRPAY                                 
+00173C D208 C24D C544 018BD 01BB4   268          MVC   OFEDWITH(9),=X'40206B2021204B2020'                                           
+001742 F090 B498 0001 01498 00001   269          SRP   PCALC(10),1,0           SHIFT 1 DIGIT LEFT                                   
+001748 F859 B486 B498 01486 01498   270          ZAP   PFEDWITH(6),PCALC(10)   COPY RESULT TO FEDWITH                               
+00174E DF08 C24D B49C 018BD 0149C   271          EDMK  OFEDWITH(9),PCALC+4     EDIT RESULT TO PRNT LINE                             
+001754 0610                         272          BCTR  1,0                     DECREMENT REG 1 BY 1                                 
+001756 925B 1000      00000         273          MVI   0(1),C'$'               PLACE THE DOLLAR SIGN                                
+                                    274 *                                                                                           
+00175A F895 B498 B480 01498 01480   275          ZAP   PCALC(10),PEMPGPAY(6)   COPY GRPAY TO BIG FIELD                              
+001760 FC93 B498 B457 01498 01457   276          MP    PCALC(10),PSWMANIP(4)   MULT ST WH BY GRPAY                                  
+001766 D208 C25E C544 018CE 01BB4   277          MVC   OSTWITH(9),=X'40206B2021204B2020'                                            
+00176C F090 B498 0001 01498 00001   278          SRP   PCALC(10),1,0           SHIFT 1 DIGIT LEFT                                   
+001772 F859 B48C B498 0148C 01498   279          ZAP   PSTWITH(6),PCALC(10)    COPY RESULT TO STWITH                                
+001778 DF08 C25E B49C 018CE 0149C   280          EDMK  OSTWITH(9),PCALC+4      EDIT RESULT TO PRNT LINE                             
+00177E 0610                         281          BCTR  1,0                     DECREMENT REG 1 BY 1                                 
+
+                                                                                                               PAGE    6            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+001780 925B 1000      00000         282          MVI   0(1),C'$'               PLACE THE DOLLAR SIGN                                
+                                    283 *                                                                                           
+001784 F050 B492 0003 01492 00003   284          SRP   PEMPNPAY(6),3,0         SHIFT 3 DIGITS LEFT                                  
+00178A FB55 B480 B486 01480 01486   285          SP    PEMPGPAY(6),PFEDWITH(6) MINUS FEDWH FROM GRPAY                               
+001790 FB55 B480 B48C 01480 0148C   286          SP    PEMPGPAY(6),PSTWITH(6)  MINUS STWH FROM GRPAY                                
+001796 F855 B492 B480 01492 01480   287          ZAP   PEMPNPAY(6),PEMPGPAY(6) COPY GRPAY TO NET PAY                                
+00179C F055 B492 003C 01492 0003C   288          SRP   PEMPNPAY(6),64-4,5      SHIFT 4 DIGITS RIGHT                                 
+0017A2 D20E C26E C535 018DE 01BA5   289          MVC   OEMPNPAY(15),=X'402020206B2020206B2021204B2020'                              
+0017A8 DF0E C26E B492 018DE 01492   290          EDMK  OEMPNPAY(15),PEMPNPAY   EDIT NET PAY TO PRNT LINE                            
+0017AE 0610                         291          BCTR  1,0                     DECREMENT REG 1 BY 1                                 
+0017B0 925B 1000      00000         292          MVI   0(1),C'$'               PLACE THE DOLLAR SIGN                                
+                                    293 *                                                                                           
+0017B4 5940 C518            01B88   294          C     4,=F'99'       CHECK IF CONT OF REG 4 = 99                                   
+0017B8 4780 C162            017D2   295          BE    NEWPAGE        PRINT INITIAL HEADERS IF CC IS 0                              
+                                    296 *                                                                                           
+0017BC 5940 C51C            01B8C   297          C     4,=F'17'       CHECK IF CONT OF REG 4 = 17                                   
+0017C0 4780 C162            017D2   298          BE    NEWPAGE        NEW PAGE PROCESS IF CC IS 0                                   
+                                    299 *                                                                                           
+0017C4 E020 C1F8 0085 01868         300 ODETAIL  XPRNT DETAIL,133     PRINT THE EMPLOYEE DETAIL RECORD                              
+0017CA 5A40 C520            01B90   301          A     4,=F'1'        ADD 1 TO LINE COUNTER                                         
+                                    302 *                                                                                           
+0017CE 47F0 C022            01692   303          BC    B'1111',LOOP2  BRANCH TO TOP OF LOOP1 TO CHECK EOF                           
+                                    304 *                                                                                           
+0017D2 5A50 C520            01B90   305 NEWPAGE  A     5,=F'1'        ADD 1 TO PAGE COUNTER                                         
+0017D6 F341 C2FD B461 0196D 01461   306          UNPK  OPAGECTR,PPAGECTR     DISPLAY PAGE NUMBER                                    
+0017DC E020 C27D 0085 018ED         307          XPRNT HEADER1,133    PRINT PAGE TITLE HEADER                                       
+0017E2 E020 C302 0085 01972         308          XPRNT HEADER2,133    PRINT PAGE TITLE HEADER LINE 2                                
+0017E8 E020 C387 0085 019F7         309          XPRNT COLHDR1,133    PRINT ROW 1 OF HEADERS                                        
+0017EE E020 C40C 0085 01A7C         310          XPRNT COLHDR2,133    PRINT ROW 2 OF HEADERS                                        
+0017F4 E020 C491 0085 01B01         311          XPRNT HYPHENS,133    PRINT HEADER HYPHENS                                          
+0017FA 1B44                         312          SR    4,4            0 OUT LINE COUNTER                                            
+0017FC 47F0 C154            017C4   313          BC    B'1111',ODETAIL  UNCOND RETURN TO RECORD PRINTER                             
+                                    314 *                                                                                           
+                                    315 *  PROCTBL STORAGE                                                                          
+                                    316 *                                                                                           
+001800                              317 PTSAVE   DS    18F            REGISTER SAVE AREA                                            
+                                    318 *                                                                                           
+001848 0000000000000000             319 DBLWORD  DC    D'0'           DOUBLEWORD ON DOUBLEWORD BOUNDARY                             
+                                    320 *                                                                                           
+001850 00001480                     321 CNPARMS  DC    A(PEMPGPAY)                                                                  
+001854 00001492                     322          DC    A(PEMPNPAY)                                                                  
+001858 00000000                     323          DC    A(0)                                                                         
+00185C 00001486                     324          DC    A(PFEDWITH)                                                                  
+001860 00000000                     325          DC    A(0)                                                                         
+001864 0000148C                     326          DC    A(PSTWITH)                                                                   
+                                    327 *                                                                                           
+001868 F0                           328 DETAIL   DC    C'0'    CARRIAGE CONTROL CHARACTER                                           
+001869                              329 OEMPID   DS    CL9     OUTPUT FIELD FOR EMPLOYEE NAME                                       
+001872 4040                         330          DC    2C' '   SPACES                                                               
+001874                              331 OEMPNME  DS    CL25    OUTPUT FIELD FOR EMPLOYEE ID                                         
+00188D 404040                       332          DC    3C' '   SPACES                                                               
+001890                              333 OHRPAY   DS    CL7     OUTPUT FIELD FOR EMPLOYEE PAY RATE                                   
+001897 404040                       334          DC    3C' '   SPACES                                                               
+00189A                              335 OHOURS   DS    CL7     OUTPUT FIELD FOR EMPLOYEE HOURS WORKED                               
+0018A1 404040                       336          DC    3C' '   SPACES                                                               
+0018A4                              337 OEMPGPAY DS    CL17    OUTPUT FIELD FOR EMPLOYEE GROSS PAY AMT                              
+0018B5 4040404040404040             338          DC    8C' '   SPACES                                                               
+
+                                                                                                               PAGE    7            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+0018BD                              339 OFEDWITH DS    CL12    OUTPUT FIELD FOR FEDERAL WITHHOLDING                                 
+0018C9 4040404040                   340          DC    5C' '   SPACES                                                               
+0018CE                              341 OSTWITH  DS    CL13    OUTPUT FIELD FOR STATE WITHHOLDING                                   
+0018DB 404040                       342          DC    3C' '   SPACES                                                               
+0018DE                              343 OEMPNPAY DS    CL15    OUTPUT FIELD FOR EMPLOYEE NET PAY AMT                                
+                                    344 *                                                                                           
+                                    345 *  FIRST LINE OF THE HEADER                                                                 
+                                    346 *                                                                                           
+0018ED 40                           347 HEADER1  DC    C' '     CARRIAGE CONTROL CHARACTER                                          
+0018EE 4040404040404040             348          DC    50C' '   SPACES                                                              
+001920 E2E3C1E3C540D6C6             349          DC    CL31'STATE OF ILLINOIS NATIONAL BANK'                                        
+00193F 4040404040404040             350          DC    41C' '   SPACES                                                              
+001968 D7C1C7C57A                   351          DC    CL5'PAGE:'                                                                   
+00196D                              352 OPAGECTR DS    CL5      OUTPUT FIELD FOR PAGE NUMBER                                        
+                                    353 *                                                                                           
+                                    354 *  SECOND LINE OF HEADER                                                                    
+                                    355 *                                                                                           
+001972 40                           356 HEADER2  DC    C' '     CARRIAGE CONTROL CHARACTER                                          
+001973 4040404040404040             357          DC    48C' '   SPACES                                                              
+0019A3 E2C5D4C960D4D6D5             358          DC    CL37'SEMI-MONTHLY EMPLOYEE PAYROLL REPORT'                                   
+0019C8 4040404040404040             359          DC    47C' '   SPACES                                                              
+                                    360 *                                                                                           
+                                    361 *  COLUMN HEADER LINE 1                                                                     
+                                    362 *                                                                                           
+0019F7 40                           363 COLHDR1  DC    C' '    CARRIAGE CONTROL CHARACTER                                           
+0019F8 C5D4D7D3D6E8C5C5             364          DC    CL8'EMPLOYEE'                                                                
+001A00 4040                         365          DC    2C' '   SPACES                                                               
+001A02 C5D4D7D3D6E8C5C5             366          DC    CL8'EMPLOYEE'                                                                
+001A0A 4040404040404040             367          DC    21C' '  SPACES                                                               
+001A1F C8D6E4D9D3E8                 368          DC    CL6'HOURLY'                                                                  
+001A25 4040404040                   369          DC    5C' '   SPACES                                                               
+001A2A C8D6E4D9E2                   370          DC    CL5'HOURS'                                                                   
+001A2F 4040404040404040             371          DC    10C' '  SPACES                                                               
+001A39 C5D4D7D3D6E8C5C5             372          DC    CL8'EMPLOYEE'                                                                
+001A41 404040                       373          DC    3C' '   SPACES                                                               
+001A44 C5D4D7D3D6E8C5C5             374          DC    CL16'EMPLOYEE FEDERAL'                                                       
+001A54 404040                       375          DC    3C' '   SPACES                                                               
+001A57 C5D4D7D3D6E8C5C5             376          DC    CL14'EMPLOYEE STATE'                                                         
+001A65 4040404040404040             377          DC    15C' '   SPACES                                                              
+001A74 C5D4D7D3D6E8C5C5             378          DC    CL8'EMPLOYEE'                                                                
+                                    379 *                                                                                           
+                                    380 *  COLUMN HEADER LINE 2                                                                     
+                                    381 *                                                                                           
+001A7C 40                           382 COLHDR2  DC    C' '    CARRIAGE CONTROL CHARACTER                                           
+001A7D C9C4                         383          DC    CL2'ID'                                                                      
+001A7F 4040404040404040             384          DC    8C' '   SPACES                                                               
+001A87 D5C1D4C5                     385          DC    CL4'NAME'                                                                    
+001A8B 4040404040404040             386          DC    28C' '  SPACES                                                               
+001AA7 D7C1E8                       387          DC    CL3'PAY'                                                                     
+001AAA 40404040                     388          DC    4C' '   SPACES                                                               
+001AAE E6D6D9D2C5C4                 389          DC    CL6'WORKED'                                                                  
+001AB4 4040404040404040             390          DC    9C' '   SPACES                                                               
+001ABD C7D9D6E2E240D7C1             391          DC    CL9'GROSS PAY'                                                               
+001AC6 4040404040404040             392          DC    8C' '   SPACES                                                               
+001ACE E6C9E3C8C8D6D3C4             393          DC    CL11'WITHHOLDING'                                                            
+001AD9 404040404040                 394          DC    6C' '   SPACES                                                               
+001ADF E6C9E3C8C8D6D3C4             395          DC    CL11'WITHHOLDING'                                                            
+
+                                                                                                               PAGE    8            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+001AEA 4040404040404040             396          DC    16C' '  SPACES                                                               
+001AFA D5C5E340D7C1E8               397          DC    CL7'NET PAY'                                                                 
+                                    398 *                                                                                           
+                                    399 *  HYPHENS                                                                                  
+                                    400 *                                                                                           
+001B01 40                           401 HYPHENS  DC    C' '    CARRIAGE CONTROL CHARACTER                                           
+001B02 6060606060606060             402          DC    9C'-'   HYPHENS FOR EMPLOYEE NAME                                            
+001B0B 40                           403          DC    1C' '   SPACES                                                               
+001B0C 6060606060606060             404          DC    25C'-'  HYPHENS FOR EMPLOYEE ID                                              
+001B25 404040                       405          DC    3C' '   SPACES                                                               
+001B28 60606060606060               406          DC    7C'-'   HYPHENS FOR EMPLOYEE PAY RATE                                        
+001B2F 404040                       407          DC    3C' '   SPACES                                                               
+001B32 60606060606060               408          DC    7C'-'   HYPHENS FOR EMPLOYEE HOURS WORKED                                    
+001B39 404040                       409          DC    3C' '   SPACES                                                               
+001B3C 6060606060606060             410          DC    15C'-'  HYPHENS FOR EMPLOYEE GROSS PAY AMT                                   
+001B4B 404040                       411          DC    3C' '   SPACES                                                               
+001B4E 6060606060606060             412          DC    16C'-'  HYPHENS FOR FEDERAL WITHHOLDING                                      
+001B5E 404040                       413          DC    3C' '   SPACES                                                               
+001B61 6060606060606060             414          DC    14C'-'  HYPHENS FOR STATE WITHHOLDING                                        
+001B6F 4040404040404040             415          DC    8C' '   SPACES                                                               
+001B77 6060606060606060             416          DC    15C'-'  HYPHENS FOR EMPLOYEE NET PAY AMT                                     
+                                    417 *                                                                                           
+                                    418 *        END   PROCTBL                                                                      
+                                    419 *                                                                                           
+                                    420          END   PAYROLL3                                                                     
+001B88 00000063                     421                =F'99'                                                                       
+001B8C 00000011                     422                =F'17'                                                                       
+001B90 00000001                     423                =F'1'                                                                        
+001B94 2120206020202020             424                =X'21202060202020202020'                                                     
+001B9E 402021204B2020               425                =X'402021204B2020'                                                           
+001BA5 402020206B202020             426                =X'402020206B2020206B2021204B2020'                                           
+001BB4 40206B2021204B20             427                =X'40206B2021204B2020'                                                       
+
+***  NO   STATEMENTS FLAGGED -  NO   WARNINGS,  NO   ERRORS                                                                         
+
+*** DYNAMIC CORE AREA USED:  LOW:   25784 HIGH:    2208 LEAVING:  465576 FREE BYTES. AVERAGE:       65 BYTES/STMT ***               
+
+*** ASSEMBLY TIME =    0.000 SECS,   428000 STATEMENTS/SEC ***                                                                      
+
+*** PROGRAM EXECUTION BEGINNING - ANY OUTPUT BEFORE EXECUTION TIME MESSAGE IS PRODUCED BY USER PROGRAM ***                          
+
+*** EXECUTION TIME =    0.000 SECS.       125 INSTRUCTIONS EXECUTED -   125000 INSTRUCTIONS/SEC ***                                 
+
+*** FIRST CARD NOT READ: 1646512002200080000150990025LUDWIG VAN BEETHOVEN                                                           
+
+ ASSIST COMPLETION DUMP                                                                                                             
+
+PSW AT ABEND FFC50001 C0001546       COMPLETION CODE   SYSTEM = 0C1 OPERATION                                                       
+
+** TRACE OF INSTRUCTIONS JUST BEFORE TERMINATION: PSW BITS SHOWN ARE THOSE BEFORE CORRESPONDING INSTRUCTION DECODED ***             
+
+  IM LOCATION    INSTRUCTION :  IM = PSW BITS 32-39(ILC,CC,MASK) BEFORE INSTRUCTION EXECUTED AT PROGRAM LOCATION SHOWN              
+
+  00  001548     F224 2008 400D                                                                                                     
+
+  C0  00154E     F224 200B 4012                                                                                                     
+
+  C0  001554     F224 200E 4017                                                                                                     
+
+  C0  00155A     D218 2011 401C                                                                                                     
+
+  C0  001560     4120 201C                                                                                                          
+
+  80  001564     E000 C13C 0050                                                                                                     
+
+  C0  00156A     47F0 C058                                                                                                          
+
+  80  001538     2FC3                                                                                                               
+
+  40  00153A     D3C1 E4C4 C540                                                                                                     
+
+  C0  001540     C4C5 C2E4 E2E2  <-- LAST INSTRUCTION DONE - PROBABLE CAUSE OF TERMINATION                                          
+
+                                                                                                                                    
+
+
+** TRACE OF LAST 10 BRANCH INSTRUCTIONS EXECUTED: PSW BITS SHOWN ARE THOSE BEFORE CORRESPONDING INSTRUCTION DECODED ***             
+
+  IM LOCATION    INSTRUCTION :  IM = PSW BITS 32-39(ILC,CC,MASK) BEFORE INSTRUCTION EXECUTED AT PROGRAM LOCATION SHOWN              
+
+  00  00002C     05EF                                                                                                               
+
+  40  00156A     47F0 C058                                                                                                          
+
+  80  00156A     47F0 C058                                                                                                          
+
+  80  00156A     47F0 C058                                                                                                          
+
+  80  00156A     47F0 C058                                                                                                          
+
+  80  00156A     47F0 C058                                                                                                          
+
+  80  00156A     47F0 C058                                                                                                          
+
+  80  00156A     47F0 C058                                                                                                          
+
+  80  00156A     47F0 C058                                                                                                          
+
+  80  00156A     47F0 C058                                                                                                          
+
+ REGS 0-7      F4F4F4F4    000014C0    00001544    00001453    0000161C    0000145E    00000000    F4F4F4F4                         
+ REGS 8-15     F4F4F4F4    F4F4F4F4    F4F4F4F4    00001000    000014E0    00001584    00001584    000014E0                         
+
+ FLTR 0-6      F4F4F4F4F4F4F4F4        F4F4F4F4F4F4F4F4        F4F4F4F4F4F4F4F4        F4F4F4F4F4F4F4F4                             
+
+ USER STORAGE                                                                                                                       
+
+                             CORE ADDRESSES SPECIFIED-     000000 TO 001D08                                                         
+000000   90ECD00C 18CF41E0 C05050E0 D00850D0    E00418DE 41400063 1B551B66 41B0CFFF   *..................... ..........*            
+000020   41B0B001 4110B4C0 58F0C048 05EF4110    B4D058F0 C04C05EF 1BFF58D0 D00458E0   *.........0.........0............*            
+000040   D00C980C D01407FE 000014E0 00001670    F5F5F5F5 00001BC0 00001584 4000002E   *................5555........ ...*            
+000060   000014E0 F4F4F4F4 000014C0 F4F4F4F4    F4F4F4F4 00000063 00000000 00000000   *....4444....44444444............*            
+000080   F4F4F4F4 F4F4F4F4 F4F4F4F4 F4F4F4F4    00001000 00000000 5C5C5C5C 5C5C5C5C   *4444444444444444................*            
+0000A0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 40404040 40404040 40404040   *....................            *            
+0000C0   40405C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C4040   *  ............................  *            
+0000E0   40404040 40404040 40404040 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *            ....................*            
+000100   5C5C5C5C 5C5C5C5C 40404040 40404040    40404040 40405C5C 5C5C5C5C 5C5C5C5C   *........              ..........*            
+000120   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C4040 40404040 40404040 40404040   *..................              *            
+000140   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 40404040   *............................    *            
+000160   40404040 40404040 40405C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *          ......................*            
+000180   5C5C5C5C 5C5C4040 40404040 40404040    40404040 5C5C5C5C 5C5C5C5C 5C5C5C5C   *......              ............*            
+0001A0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    40404040 40404040 40404040 40405C5C   *................              ..*            
+0001C0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C4040 40404040   *..........................      *            
+0001E0   40404040 40404040 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *        ........................*            
+000200   5C5C5C5C 40404040 40404040 40404040    40405C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *....              ..............*            
+000220   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C4040    40404040 40404040 40404040 5C5C5C5C   *..............              ....*            
+000240   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 40404040 40404040   *........................        *            
+000260   40404040 40405C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *      ..........................*            
+000280   5C5C4040 40404040 40404040 40404040    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *..              ................*            
+0002A0   5C5C5C5C 5C5C5C5C 5C5C5C5C 40404040    40404040 40404040 40405C5C 5C5C5C5C   *............              ......*            
+0002C0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C4040 40404040 40404040   *......................          *            
+0002E0   40404040 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *    ............................*            
+000300   40404040 40404040 40404040 40405C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *              ..................*            
+000320   5C5C5C5C 5C5C5C5C 5C5C4040 40404040    40404040 40404040 5C5C5C5C 5C5C5C5C   *..........              ........*            
+000340   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 40404040 40404040 40404040   *....................            *            
+000360   40405C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C4040   *  ............................  *            
+000380   40404040 40404040 40404040 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *            ....................*            
+0003A0   5C5C5C5C 5C5C5C5C 40404040 40404040    40404040 40405C5C 5C5C5C5C 5C5C5C5C   *........              ..........*            
+0003C0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C4040 40404040 40404040 40404040   *..................              *            
+0003E0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 40404040   *............................    *            
+000400   40404040 40404040 40405C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *          ......................*            
+000420   5C5C5C5C 5C5C4040 40404040 40404040    40404040 5C5C5C5C 5C5C5C5C 5C5C5C5C   *......              ............*            
+000440   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    40404040 40404040 40404040 40405C5C   *................              ..*            
+000460   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C4040 40404040   *..........................      *            
+000480   40404040 40404040 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *        ........................*            
+0004A0   5C5C5C5C 40404040 40404040 40404040    40405C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *....              ..............*            
+0004C0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C4040    40404040 40404040 40404040 5C5C5C5C   *..............              ....*            
+0004E0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 40404040 40404040   *........................        *            
+000500   40404040 40405C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *      ..........................*            
+000520   5C5C4040 40404040 40404040 40404040    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *..              ................*            
+000540   5C5C5C5C 5C5C5C5C 5C5C5C5C 40404040    40404040 40404040 40405C5C 5C5C5C5C   *............              ......*            
+000560   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C4040 40404040 40404040   *......................          *            
+000580   40404040 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *    ............................*            
+0005A0   40404040 40404040 40404040 40405C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *              ..................*            
+0005C0   5C5C5C5C 5C5C5C5C 5C5C4040 40404040    40404040 40404040 5C5C5C5C 5C5C5C5C   *..........              ........*            
+0005E0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 40404040 40404040 40404040   *....................            *            
+000600   40405C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C4040   *  ............................  *            
+000620   40404040 40404040 40404040 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *            ....................*            
+000640   5C5C5C5C 5C5C5C5C 40404040 40404040    40404040 40405C5C 5C5C5C5C 5C5C5C5C   *........              ..........*            
+000660   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C4040 40404040 40404040 40404040   *..................              *            
+000680   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 40404040   *............................    *            
+0006A0   40404040 40404040 40405C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *          ......................*            
+0006C0   5C5C5C5C 5C5C4040 40404040 40404040    40404040 5C5C5C5C 5C5C5C5C 5C5C5C5C   *......              ............*            
+0006E0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    40404040 40404040 40404040 40405C5C   *................              ..*            
+000700   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C4040 40404040   *..........................      *            
+000720   40404040 40404040 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *        ........................*            
+000740   5C5C5C5C 40404040 40404040 40404040    40405C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *....              ..............*            
+000760   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C4040    40404040 40404040 40404040 5C5C5C5C   *..............              ....*            
+
+000780   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 40404040 40404040   *........................        *            
+0007A0   40404040 40405C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *      ..........................*            
+0007C0   5C5C4040 40404040 40404040 40404040    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *..              ................*            
+0007E0   5C5C5C5C 5C5C5C5C 5C5C5C5C 40404040    40404040 40404040 40405C5C 5C5C5C5C   *............              ......*            
+000800   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C4040 40404040 40404040   *......................          *            
+000820   40404040 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *    ............................*            
+000840   40404040 40404040 40404040 40405C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *              ..................*            
+000860   5C5C5C5C 5C5C5C5C 5C5C4040 40404040    40404040 40404040 5C5C5C5C 5C5C5C5C   *..........              ........*            
+000880   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 40404040 40404040 40404040   *....................            *            
+0008A0   40405C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C4040   *  ............................  *            
+0008C0   40404040 40404040 40404040 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *            ....................*            
+0008E0   5C5C5C5C 5C5C5C5C 40404040 40404040    40404040 40405C5C 5C5C5C5C 5C5C5C5C   *........              ..........*            
+000900   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C4040 40404040 40404040 40404040   *..................              *            
+000920   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 40404040   *............................    *            
+000940   40404040 40404040 40405C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *          ......................*            
+000960   5C5C5C5C 5C5C4040 40404040 40404040    40404040 5C5C5C5C 5C5C5C5C 5C5C5C5C   *......              ............*            
+000980   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    40404040 40404040 40404040 40405C5C   *................              ..*            
+0009A0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C4040 40404040   *..........................      *            
+0009C0   40404040 40404040 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *        ........................*            
+0009E0   5C5C5C5C 40404040 40404040 40404040    40405C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *....              ..............*            
+000A00   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C4040    40404040 40404040 40404040 5C5C5C5C   *..............              ....*            
+000A20   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 40404040 40404040   *........................        *            
+000A40   40404040 40405C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *      ..........................*            
+000A60   5C5C4040 40404040 40404040 40404040    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *..              ................*            
+000A80   5C5C5C5C 5C5C5C5C 5C5C5C5C 40404040    40404040 40404040 40405C5C 5C5C5C5C   *............              ......*            
+000AA0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C4040 40404040 40404040   *......................          *            
+000AC0   40404040 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *    ............................*            
+000AE0   40404040 40404040 40404040 40405C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *              ..................*            
+000B00   5C5C5C5C 5C5C5C5C 5C5C4040 40404040    40404040 40404040 5C5C5C5C 5C5C5C5C   *..........              ........*            
+000B20   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 40404040 40404040 40404040   *....................            *            
+000B40   40405C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C4040   *  ............................  *            
+000B60   40404040 40404040 40404040 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *            ....................*            
+000B80   5C5C5C5C 5C5C5C5C 40404040 40404040    40404040 40405C5C 5C5C5C5C 5C5C5C5C   *........              ..........*            
+000BA0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C4040 40404040 40404040 40404040   *..................              *            
+000BC0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 40404040   *............................    *            
+000BE0   40404040 40404040 40405C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *          ......................*            
+000C00   5C5C5C5C 5C5C4040 40404040 40404040    40404040 5C5C5C5C 5C5C5C5C 5C5C5C5C   *......              ............*            
+000C20   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    40404040 40404040 40404040 40405C5C   *................              ..*            
+000C40   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C4040 40404040   *..........................      *            
+000C60   40404040 40404040 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *        ........................*            
+000C80   5C5C5C5C 40404040 40404040 40404040    40405C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *....              ..............*            
+000CA0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C4040    40404040 40404040 40404040 5C5C5C5C   *..............              ....*            
+000CC0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 40404040 40404040   *........................        *            
+000CE0   40404040 40405C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *      ..........................*            
+000D00   5C5C4040 40404040 40404040 40404040    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *..              ................*            
+000D20   5C5C5C5C 5C5C5C5C 5C5C5C5C 40404040    40404040 40404040 40405C5C 5C5C5C5C   *............              ......*            
+000D40   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C4040 40404040 40404040   *......................          *            
+000D60   40404040 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *    ............................*            
+000D80   40404040 40404040 40404040 40405C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *              ..................*            
+000DA0   5C5C5C5C 5C5C5C5C 5C5C4040 40404040    40404040 40404040 5C5C5C5C 5C5C5C5C   *..........              ........*            
+000DC0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 40404040 40404040 40404040   *....................            *            
+000DE0   40405C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C4040   *  ............................  *            
+000E00   40404040 40404040 40404040 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *            ....................*            
+000E20   5C5C5C5C 5C5C5C5C 40404040 40404040    40404040 40405C5C 5C5C5C5C 5C5C5C5C   *........              ..........*            
+000E40   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C4040 40404040 40404040 40404040   *..................              *            
+000E60   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 40404040   *............................    *            
+000E80   40404040 40404040 40405C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *          ......................*            
+000EA0   5C5C5C5C 5C5C4040 40404040 40404040    40404040 5C5C5C5C 5C5C5C5C 5C5C5C5C   *......              ............*            
+000EC0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    40404040 40404040 40404040 40405C5C   *................              ..*            
+000EE0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C4040 40404040   *..........................      *            
+000F00   40404040 40404040 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *        ........................*            
+000F20   5C5C5C5C 40404040 40404040 40404040    40405C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *....              ..............*            
+000F40   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C4040    40404040 40404040 40404040 5C5C5C5C   *..............              ....*            
+
+000F60   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 40404040 40404040   *........................        *            
+000F80   40404040 40405C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *      ..........................*            
+000FA0   5C5C4040 40404040 40404040 40404040    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *..              ................*            
+000FC0   5C5C5C5C 5C5C5C5C 5C5C5C5C 40404040    40404040 40404040 40405C5C 5C5C5C5C   *............              ......*            
+000FE0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C4040 40404040 40404040   *......................          *            
+001000   40404040 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *    ............................*            
+001020   40404040 40404040 40404040 40405C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *              ..................*            
+001040   5C5C5C5C 5C5C5C5C 5C5C4040 40404040    40404040 40404040 5C5C5C5C 5C5C5C5C   *..........              ........*            
+001060   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 40404040 40404040 40404040   *....................            *            
+001080   40405C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C4040   *  ............................  *            
+0010A0   40404040 40404040 40404040 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *            ....................*            
+0010C0   5C5C5C5C 5C5C5C5C 40404040 40404040    40404040 40405C5C 5C5C5C5C 5C5C5C5C   *........              ..........*            
+0010E0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C4040 40404040 40404040 40404040   *..................              *            
+001100   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 40404040   *............................    *            
+001120   40404040 40404040 40405C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *          ......................*            
+001140   5C5C5C5C 5C5C4040 40404040 40404040    40404040 5C5C5C5C 5C5C5C5C 5C5C5C5C   *......              ............*            
+001160   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    40404040 40404040 40404040 40405C5C   *................              ..*            
+001180   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C4040 40404040   *..........................      *            
+0011A0   40404040 40404040 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *        ........................*            
+0011C0   5C5C5C5C 40404040 40404040 40404040    40405C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *....              ..............*            
+0011E0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C4040    40404040 40404040 40404040 5C5C5C5C   *..............              ....*            
+001200   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 40404040 40404040   *........................        *            
+001220   40404040 40405C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *      ..........................*            
+001240   5C5C4040 40404040 40404040 40404040    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *..              ................*            
+001260   5C5C5C5C 5C5C5C5C 5C5C5C5C 40404040    40404040 40404040 40405C5C 5C5C5C5C   *............              ......*            
+001280   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C4040 40404040 40404040   *......................          *            
+0012A0   40404040 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *    ............................*            
+0012C0   40404040 40404040 40404040 40405C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *              ..................*            
+0012E0   5C5C5C5C 5C5C5C5C 5C5C4040 40404040    40404040 40404040 5C5C5C5C 5C5C5C5C   *..........              ........*            
+001300   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 40404040 40404040 40404040   *....................            *            
+001320   40405C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C4040   *  ............................  *            
+001340   40404040 40404040 40404040 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *            ....................*            
+001360   5C5C5C5C 5C5C5C5C 40404040 40404040    40404040 40405C5C 5C5C5C5C 5C5C5C5C   *........              ..........*            
+001380   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C4040 40404040 40404040 40404040   *..................              *            
+0013A0   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 40404040   *............................    *            
+0013C0   40404040 40404040 40405C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C   *          ......................*            
+0013E0   5C5C5C5C 5C5C4040 40404040 40404040    40404040 5C5C5C5C 5C5C5C5C 5C5C5C5C   *......              ............*            
+001400   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    40404040 40404040 40404040 40405C5C   *................              ..*            
+001420   5C5C5C5C 5C5C5C5C 5C5C5C5C 5C5C5C5C    5C5C5C5C 5C5C5C5C 5C5C4040 40404040   *..........................      *            
+001440   40404040 40404040 05234524 5F01525F    08050F02 510F5202 2FD1D6C1 D540E3D6   *        .................JOAN TO*            
+001460   E6C5D940 00345632 2F01900F 08075F00    000F0134 4FE6D6D3 C6C7C1D5 C740C1D4   *WER .................WOLFGANG AM*            
+001480   03403223 3F01029F 08000F03 123F2540    0FD9C9C3 C8C1D9C4 40E2E3D9 01646512   *. ............. .RICHARD STR....*            
+0014A0   0F02200F 07700F01 509F9002 5FC1D4E8    40C2C5C1 C3C84040 07656002 3F02375F   *.............AMY BEACH  ........*            
+0014C0   02825F03 415F0738 5FC5E3C8 C5D340E2    D4E8E3C8 02387032 2F02295F 08050F02   *.........ETHEL SMYTH............*            
+0014E0   125F0000 0FD7C5E3 C5D940C9 D3E8C9C3    00496627 7F02320F 07867F00 079F2202   *.....PETER ILYIC................*            
+001500   3FC1D5E3 D6D540C2 D9E4C3D2 00234524    5F01525F 08050F02 510F6002 2FC6D3D6   *.ANTON BRUCK.................FLO*            
+001520   D9C5D5C3 C540D7D9 01345632 2F01900F    08077F00 000F0122 2FC3D3C1 E4C4C540   *RENCE PR.................CLAUDE *            
+001540   C4C5C2E4 E2E2E840 40404040 40404040    40404012 F224200E 4017D218 2011401C   *DEBUSSY            .2... .K... .*            
+001560   4120201C E000C13C 005047F0 C0581BFF    58D0D004 58E0D00C 980CD014 07FEF5F5   *......A....0..................55*            
+001580   00100CF5 F5F5F5F5 00000050 F5F5F5F5    F5F5F5F5 F5F5F5F5 F5F5F5F5 F5F5F5F5   *...55555....55555555555555555555*            
+0015A0   F5F5F5F5 F5F5F5F5 F5F5F5F5 F5F5F5F5    F5F5F5F5 F5F5F5F5 F5F5F5F5 F5F5F5F5   *55555555555555555555555555555555*            
+0015C0   F5F5F5F5 F5F5F5F5 F5F5F5F5 F0F1F3F7    F5F0F0F0 F3F2F5F0 40404040 40404040   *555555555555013750003250        *            
+0015E0   40404040 40404040 40404040 40404040    40404040 40404040 40404040 40404040   *                                *            
+001600   40404040 40404040 40404040 40404040    40404040 40404040 40404040 F3F4F0F3   *                            3403*            
+001620   F2F2F3F3 F0F1F0F2 F9F0F8F0 F0F0F0F3    F1F2F3F2 F5F4F0F0 D1E4C4C9 E3C840E6   *223301029080000312325400JUDITH W*            
+001640   C5C9D940 40404040 40404040 40404040    40404040 40404040 40404040 40404040   *EIR                             *            
+001660   40404040 40404040 40404040 F5F5F5F5    90ECD00C 18CF41E0 C19050E0 D00850D0   *            5555........A.......*            
+001680   E00418DE 98251000 F872C1D8 30004F40    C1D8D218 C2042011 9240C1F9 D282C1FA   *........8.AQ... AQK.B.... A9K.A.*            
+0016A0   C1F94110 C1FCD209 C1F9C524 DE09C1F9    20004110 C223D206 C220C52E DF06C220   *A9..A.K.A9E...A9....B.K.B.E...B.*            
+0016C0   20050610 925B1000 4110C22D D206C22A    C52EDE06 C22A2008 F852B471 200BF050   *..........B.K.B.E...B...8.....0.*            
+0016E0   B4710003 F055B471 003FF852 B47A200E    F050B47A 0003F055 B47A003F F852B480   *....0.....8.....0.....0.....8...*            
+001700   2005FC52 B4802008 FB55B480 B471FA55    B480B47A F055B480 003ED20E C234C535   *....................0.....K.B.E.*            
+001720   4110C237 DF0EC234 B4800610 925B1000    F895B498 B480FC93 B498B44C D208C24D   *..B...B.........8...........K.B.*            
+
+001740   C544F090 B4980001 F859B486 B498DF08    C24DB49C 0610925B 1000F895 B498B480   *E.0.....8.......B.........8.....*            
+001760   FC93B498 B457D208 C25EC544 F090B498    0001F859 B48CB498 DF08C25E B49C0610   *......K.B.E.0.....8.......B.....*            
+001780   925B1000 F050B492 0003FB55 B480B486    FB55B480 B48CF855 B492B480 F055B492   *....0.................8.....0...*            
+0017A0   003CD20E C26EC535 DF0EC26E B4920610    925B1000 5940C518 4780C162 5940C51C   *..K.B.E...B.......... E...A.. E.*            
+0017C0   4780C162 E020C1F8 00855A40 C52047F0    C0225A50 C520F341 C2FDB461 E020C27D   *..A...A8... E..0....E.3.B.....B.*            
+0017E0   0085E020 C3020085 E020C387 0085E020    C40C0085 E020C491 00851B44 47F0C154   *....C.....C.....D.....D......0A.*            
+001800   F5F5F5F5 F5F5F5F5 F5F5F5F5 F5F5F5F5    F5F5F5F5 F5F5F5F5 F5F5F5F5 F5F5F5F5   *55555555555555555555555555555555*            
+  LINES    001820-001820    SAME AS ABOVE                                                                                           
+001840   F5F5F5F5 F5F5F5F5 00000000 00000000    00001480 00001492 00000000 00001486   *55555555........................*            
+001860   00000000 0000148C F0F5F5F5 F5F5F5F5    F5F54040 F5F5F5F5 F5F5F5F5 F5F5F5F5   *........0555555555  555555555555*            
+001880   F5F5F5F5 F5F5F5F5 F5F5F5F5 F5404040    F5F5F5F5 F5F5F540 4040F5F5 F5F5F5F5   *5555555555555   5555555   555555*            
+0018A0   F5404040 F5F5F5F5 F5F5F5F5 F5F5F5F5    F5F5F5F5 F5404040 40404040 40F5F5F5   *5   55555555555555555        555*            
+0018C0   F5F5F5F5 F5F5F5F5 F5404040 4040F5F5    F5F5F5F5 F5F5F5F5 F5F5F540 4040F5F5   *555555555     5555555555555   55*            
+0018E0   F5F5F5F5 F5F5F5F5 F5F5F5F5 F5404040    40404040 40404040 40404040 40404040   *5555555555555                   *            
+001900   40404040 40404040 40404040 40404040    40404040 40404040 40404040 40404040   *                                *            
+001920   E2E3C1E3 C540D6C6 40C9D3D3 C9D5D6C9    E240D5C1 E3C9D6D5 C1D340C2 C1D5D240   *STATE OF ILLINOIS NATIONAL BANK *            
+001940   40404040 40404040 40404040 40404040    40404040 40404040 40404040 40404040   *                                *            
+001960   40404040 40404040 D7C1C7C5 7AF5F5F5    F5F54040 40404040 40404040 40404040   *        PAGE.55555              *            
+001980   40404040 40404040 40404040 40404040    40404040 40404040 40404040 40404040   *                                *            
+0019A0   404040E2 C5D4C960 D4D6D5E3 C8D3E840    C5D4D7D3 D6E8C5C5 40D7C1E8 D9D6D3D3   *   SEMI.MONTHLY EMPLOYEE PAYROLL*            
+0019C0   40D9C5D7 D6D9E340 40404040 40404040    40404040 40404040 40404040 40404040   * REPORT                         *            
+0019E0   40404040 40404040 40404040 40404040    40404040 40404040 C5D4D7D3 D6E8C5C5   *                        EMPLOYEE*            
+001A00   4040C5D4 D7D3D6E8 C5C54040 40404040    40404040 40404040 40404040 404040C8   *  EMPLOYEE                     H*            
+001A20   D6E4D9D3 E8404040 4040C8D6 E4D9E240    40404040 40404040 40C5D4D7 D3D6E8C5   *OURLY     HOURS          EMPLOYE*            
+001A40   C5404040 C5D4D7D3 D6E8D5D5 E0464544    4549C1D3 E0D0E045 44474346 48454540   *E   EMPLOYNN......AL........... *            
+001A60   42C3D1D3 D5D0E0C0 C0404040 C0D0D0D0    D0E0D0D0 E5444743 4648C5D5 E0D9E440   *.CJLN....   ........V.....EN.RU *            
+001A80   40404040 40404045 41C4D5D0 D0D0E0C0    C0404040 C0D0D0D0 D0E0D0D0 E0404040   *       ..DN......   .........   *            
+001AA0   4040C0D0 E0D0E047 41484040 40404646    49C2D5D4 D0D0E0C0 C0404040 C0D7D9D6   *  ........    ...BNM.....   .PRO*            
+001AC0   D2E2D0D7 E1484040 4040C0D0 E0D0E649    43484846 43444945 47C0D0D0 D0D0E0C6   *KS.P..    ....W................F*            
+001AE0   C9434848 C6D3D4D9 D5E7D0D0 E0404040    4040C0D0 E0D0E040 40404545 43404741   *I...FLMRNX...     .....   ... ..*            
+001B00   48C0D0D0 D0D0E0C0 C0406040 60606060    60606060 60606060 60606060 60606060   *......... . ....................*            
+001B20   60606060 60404040 60606060 60606040    40406060 60606060 60404040 60606060   *.....   .......   .......   ....*            
+001B40   60606060 60606060 60606040 40406060    60606060 60606060 60606060 60604040   *...........   ................  *            
+001B60   40606060 60606060 60606060 60606040    40404040 40404060 60606060 60606060   * ..............        .........*            
+001B80   60606060 6060F5F5 00000063 00000011    00000001 21202060 20202020 20204020   *......55...................... .*            
+001BA0   21204B20 20402020 206B2020 206B2021    204B2020 40206B20 21204B20 20F5F5F5   *..... .............. ........555*            
+001BC0   F5F5F5F5 00000000 00000050 FFFE7960    00000000 F4F4F4F4 F4F4F4F4 F4F4F4F4   *5555................444444444444*            
+001BE0   F4F4F4F4 F4F4F4F4 F4F4F4F4 F4F4F4F4    F4F4F4F4 F4F4F4F4 F4F4F4F4 F4F4F4F4   *44444444444444444444444444444444*            
+001C00   F4F4F4F4 F4F4F4F4 F5F5F5F5 F5F5F5F5    F5F5F5F5 F5F5F5F5 F5F5F5F5 F5F5F5F5   *44444444555555555555555555555555*            
+001C20   F5F5F5F5 F5F5F5F5 F5F5F5F5 F5F5F5F5    F5F5F5F5 F5F5F5F5 F5F5F5F5 F5F5F5F5   *55555555555555555555555555555555*            
+  LINES    001C40-001CE0    SAME AS ABOVE                                                                                           
+
+                                                                                                                                    
+!! END OF JES SPOOL FILE !!

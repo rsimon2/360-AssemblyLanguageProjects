@@ -1,0 +1,123 @@
+
+                   J E S 2  J O B  L O G  --  S Y S T E M  2 9 6 4  --  N O D E  S V S C J E S 2        
+
+ 
+18.56.18 JOB00612 ---- SATURDAY,  22 JAN 2022 ----
+18.56.18 JOB00612  IRR010I  USERID KC03D69  IS ASSIGNED TO THIS JOB.
+18.56.18 JOB00612  ICH70001I KC03D69  LAST ACCESS AT 18:56:17 ON SATURDAY, JANUARY 22, 2022
+18.56.18 JOB00612  $HASP373 KC03D69A STARTED - INIT 1    - CLASS A        - SYS 2964
+18.56.18 JOB00612  -                                      -----TIMINGS (MINS.)------                          -----PAGING COUNTS----
+18.56.18 JOB00612  -STEPNAME PROCSTEP    RC   EXCP   CONN       TCB       SRB  CLOCK          SERV  WORKLOAD  PAGE  SWAP   VIO SWAPS
+18.56.18 JOB00612  -JSTEP01              00     23      2       .00       .00     .0             4  BATCH        0     0     0     0
+18.56.18 JOB00612  -KC03D69A ENDED.  NAME-R. SIMON             TOTAL TCB CPU TIME=      .00 TOTAL ELAPSED TIME=    .0
+18.56.18 JOB00612  $HASP395 KC03D69A ENDED - RC=0000
+
+------ JES2 JOB STATISTICS ------
+
+
+  22 JAN 2022 JOB EXECUTION DATE
+
+
+           38 CARDS READ
+
+
+           94 SYSOUT PRINT RECORDS
+
+
+            0 SYSOUT PUNCH RECORDS
+
+
+           10 SYSOUT SPOOL KBYTES
+
+
+         0.00 MINUTES EXECUTION TIME
+!! END OF JES SPOOL FILE !!
+       1 //KC03D69A JOB ,'R. SIMON',MSGCLASS=H                                   JOB00612
+       2 //JSTEP01  EXEC PGM=ASSIST                                                      
+       3 //STEPLIB  DD DSN=KC00NIU.ASSIST.LOADLIB,DISP=SHR                               
+       4 //SYSPRINT DD SYSOUT=*                                                          
+       5 //SYSIN    DD *                                                                 
+       6 //                                                                              
+!! END OF JES SPOOL FILE !!
+ICH70001I KC03D69  LAST ACCESS AT 18:56:17 ON SATURDAY, JANUARY 22, 2022
+IEFA111I KC03D69A IS USING THE FOLLOWING JOB RELATED SETTINGS:
+         SWA=ABOVE,TIOT SIZE=32K,DSENQSHR=DISALLOW,GDGBIAS=JOB
+IEF236I ALLOC. FOR KC03D69A JSTEP01
+IGD103I SMS ALLOCATED TO DDNAME STEPLIB
+IEF237I JES2 ALLOCATED TO SYSPRINT
+IEF237I JES2 ALLOCATED TO SYSIN
+IEF142I KC03D69A JSTEP01 - STEP WAS EXECUTED - COND CODE 0000
+IGD104I KC00NIU.ASSIST.LOADLIB                       RETAINED,  DDNAME=STEPLIB 
+IEF285I   KC03D69.KC03D69A.JOB00612.D0000102.?         SYSOUT        
+IEF285I   KC03D69.KC03D69A.JOB00612.D0000101.?         SYSIN         
+IEF373I STEP/JSTEP01 /START 2022022.1856
+IEF032I STEP/JSTEP01 /STOP  2022022.1856 
+        CPU:     0 HR  00 MIN  00.00 SEC    SRB:     0 HR  00 MIN  00.00 SEC    
+        VIRT:   584K  SYS:   248K  EXT:        0K  SYS:    11232K
+        ATB- REAL:                  1056K  SLOTS:                     0K
+             VIRT- ALLOC:      13M SHRD:       0M
+IEF375I  JOB/KC03D69A/START 2022022.1856
+IEF033I  JOB/KC03D69A/STOP  2022022.1856 
+        CPU:     0 HR  00 MIN  00.00 SEC    SRB:     0 HR  00 MIN  00.00 SEC    
+!! END OF JES SPOOL FILE !!
+
+*** ASSIST 4.0/A2-05/15/82  470/V7A/0:OS/VS2  INS=SDFP7/X=BGHO, CHECK/TRC/=1180, OPTS=CDKMPR FROM PENN ST*NIU COMPSCI*LT            
+
+                                                                                                                                    
+
+                                                                                                               PAGE    1            
+
+  LOC  OBJECT CODE    ADDR1 ADDR2  STMT   SOURCE STATEMENT                                                                          
+                                      1 *****************************************************************                           
+                                      2 *                                                               *                           
+                                      3 *  CSCI 360-PE1       ASSIGNMENT 1            SPRING 2022       *                           
+                                      4 *                                                               *                           
+                                      5 *  DEVELOPER NAME: RICK SIMON                                   *                           
+                                      6 *        DUE DATE: 01/24/2022                                   *                           
+                                      7 *                                                               *                           
+                                      8 *  Replace KC03nnn above with your KC-ID assigned to you by     *                           
+                                      9 *  your instructor.  DO NOT LEAVE OUT THE CAPITAL LETTER A AT   *                           
+                                     10 *  THE END OF YOUR KC-ID!  Also, put your name in all capital   *                           
+                                     11 *  letters in the first line where it says 'your name here'.    *                           
+                                     12 *  Change CSCI 360-1 or PE1 to reflect your own section.        *                           
+                                     13 *                                                               *                           
+                                     14 *  Note that this documentation box does not go past column 65! *                           
+                                     15 *                                                               *                           
+                                     16 *****************************************************************                           
+                                     17 *        COL. 10                                                                            
+                                     18 *        |     COL. 16                                                                      
+                                     19 *        |     |                                                                            
+                                     20 *        v     v                                                                            
+000000                               21 MAIN     CSECT                                                                              
+000000                               22          USING MAIN,15     ESTABLISH ADDRESSABILITY ON REG 15                               
+000000 4140 000D            0000D    23          LA    4,13        LOAD 13 INTO REG 4                                               
+000004 4180 0006            00006    24          LA    8,6         LOAD 6 INTO REG 8                                                
+000008 1A48                          25          AR    4,8         ADD REG 8'S CONTENTS TO REG 4'S                                  
+00000A E160 0000 0000 00000          26          XDUMP ,           DUMP CONTENTS OF ALL 16 REGS                                     
+000010 07FE                          27          BCR   B'1111',14  UNCONDITIONAL RETURN TO CALLER (OS)                              
+                                     28 *                                                                                           
+                                     29          LTORG             LITERAL ORGANIZATION                                             
+                                     30 *                                                                                           
+                                     31          END   MAIN                                                                         
+
+***  NO   STATEMENTS FLAGGED -  NO   WARNINGS,  NO   ERRORS                                                                         
+
+*** DYNAMIC CORE AREA USED:  LOW:     584 HIGH:     344 LEAVING:  492640 FREE BYTES. AVERAGE:       29 BYTES/STMT ***               
+
+*** ASSEMBLY TIME =    0.000 SECS,    32000 STATEMENTS/SEC ***                                                                      
+
+*** PROGRAM EXECUTION BEGINNING - ANY OUTPUT BEFORE EXECUTION TIME MESSAGE IS PRODUCED BY USER PROGRAM ***                          
+
+BEGIN XSNAP - CALL     1 AT E0000010 USER REGISTERS                                                                                 
+
+ REGS 0-7      F4F4F4F4    F4F4F4F4    F4F4F4F4    F4F4F4F4    00000013    F4F4F4F4    F4F4F4F4    F4F4F4F4                         
+ REGS 8-15     00000006    F4F4F4F4    F4F4F4F4    F4F4F4F4    F4F4F4F4    00000018    FFFE7960    00000000                         
+
+                                                                                                                                    
+
+*** EXECUTION TIME =    0.000 SECS.         5 INSTRUCTIONS EXECUTED -     5000 INSTRUCTIONS/SEC ***                                 
+
+*** FIRST CARD NOT READ: NO CARDS READ:FILE UNOPENED                                                                                
+
+*** AM004 - NORMAL USER TERMINATION BY RETURN ***                                                                                   
+!! END OF JES SPOOL FILE !!
